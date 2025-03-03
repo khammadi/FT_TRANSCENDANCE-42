@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 
 def default_avatar():
     return 'default-avatar.png'
@@ -75,10 +76,6 @@ class Friendship(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        unique_together = ('from_user', 'to_user'), ('to_user', 'from_user')
-        ordering = ['-created_at']
     
     @classmethod
     def get_friends(cls, user):
@@ -99,15 +96,20 @@ class Friendship(models.Model):
         friend_ids = set(list(sent_accepted) + list(received_accepted))
         return User.objects.filter(id__in=friend_ids)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def clean(self):
         if self.from_user == self.to_user:
             raise ValidationError('Cannot friend yourself.')
         
+        # Only prevent if there's an active request (pending/accepted)
         if Friendship.objects.filter(
-            from_user=self.to_user,
-            to_user=self.from_user
-        ).exists():
-            raise ValidationError('Reverse request exists.')
+            Q(from_user=self.from_user, to_user=self.to_user) |
+            Q(from_user=self.to_user, to_user=self.from_user),
+            status__in=[self.Status.PENDING, self.Status.ACCEPTED]
+        ).exclude(pk=self.pk).exists():
+            raise ValidationError('An active friend request or friendship already exists.')
 
     def save(self, *args, **kwargs):
         self.full_clean()

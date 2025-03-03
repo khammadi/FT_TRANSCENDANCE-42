@@ -398,18 +398,18 @@ class FriendshipViewSet(viewsets.ModelViewSet):
         if request.user == to_user:
             return Response({"detail": "Cannot send request to yourself."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Check if a friendship or request already exists in either direction.
+        # Check for an active friend request only
         if Friendship.objects.filter(
-            Q(from_user=request.user, to_user=to_user) |
-            Q(from_user=to_user, to_user=request.user)
+            Q(from_user=request.user, to_user=to_user, status__in=['pending', 'accepted']) |
+            Q(from_user=to_user, to_user=request.user, status__in=['pending', 'accepted'])
         ).exists():
-            return Response({"detail": "Friend request already exists."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"detail": "An active friend request already exists."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             friendship = Friendship.objects.create(
                 from_user=request.user,
                 to_user=to_user,
-                status='pending'
+                status=Friendship.Status.PENDING
             )
             friendship.full_clean()  # Validate the model instance.
         except ValidationError as e:
