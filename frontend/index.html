@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="./component/profile.js"  defer></script>
+    <script type="module" src="./component/home.js" defer></script>
+    <script type="module" src="./component/login.js" defer></script>
+    <script type="module" src="./router.js" defer></script>
+    <script type="module" src="./component/sign_up.js" defer></script>
+    <script type="module" src="./component/link.js" defer></script>
+    <script type="module" src="./component/setting.js" defer></script>
+    <script type="module" src="./component/language.js" defer></script>
+    <script type="module" src="./component/Game.js" defer></script>
+    <script type="module" src="./component/game.js" defer></script>
+    <script type="module" src="./component/2FA.js" defer></script>
+    <script type="module" src="./component/secondGame.js" defer></script>
+    <script type="module" src="./component/second_game.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+</head>
+<body>
+    <main>
+    </main>
+<!-- ---------------------------------------------------------------------------Profile------------------------------------------------------------------- -->
+    <template id="pr">
+        <div id="profile">
+            <nav>
+              <img src="./style/khdidij-removebg-preview.png" alt="">
+                <ul>
+                    <li><span><i class="fa-solid fa-house"></i></span><my-link href="/home" data-i18n="Home">Home</my-link></li>
+                    <li><span><i class="fa-solid fa-user"></i></span><my-link href="/profile" data-i18n="Profile">Profile</my-link></li>
+                    <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/setting" data-i18n="Setting">Setting</my-link></li>
+                    <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/game" data-i18n="Game">Game</my-link></li>
+                </ul>
+                <label for=""><span><i class="fa-solid fa-arrow-right-from-bracket"></i></span><span class="logOut" data-i18n="Log Out">Log Out</span></label>
+            </nav>
+            <section class="profile">
+                <!-- Upload Avatar Section -->
+                <div class="avatar-section">
+                    <img id="user-avatar" src="style/bleu.jpg" alt="Profile">
+                    <input type="file" id="file">
+                    <label for="file" id="idbtn"><i class='bx bx-camera'></i></label>
+                </div>
+                <!-- Statistics Section -->
+                <div class="statistics">
+                    <h3 data-i18n="Statistics">Statistics</h3>
+                    <div class="circle" data-dots="100" data-percent="0" style="--bgColor: #ff0070"></div>
+                    <div class="text">
+                        <h2>50%</h2>
+                    </div>
+                </div>
+            </section>
+        <section class="design-div">
+<!-- ----------------------------------------FIND FRIENDS----------------------------------------------------------------------------------- -->
+            <div class="last-tourn">
+                <div class="card">
+                <div class="profile-history">
+                    <h4 class="add_friends" data-i18n="Find Friends">Find Friends</h4>
+                    <div class="users_container">
+                        <div class="user" data-username="Honey">
+                            <div class="profileAdd">
+                                <img src="./style/playerInsky.webp" alt="">
+                                <div class="name">
+                                    <h3 class="hAdd">Honey</h3>
+                                </div>
+                            </div>
+                            <button class="btnAdd add_friends" data-i18n="Add Friends">Add Friends</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+<!-- ---------------------------------------------------RATE------------------------------------------------------------------- -->
+<div class="rate">
+    <div class="card">
+        <div class="profile-history">
+            <h4 class="add_friends" data-i18n="Match History">Match History</h4>
+            
+            <!-- Match History Card -->
+            <div class="match-history-container">
+                <div class="match-card">
+                    <div class="players">
+                        <div class="player">
+                            <img src="./style/playerInsky.webp" alt="Player 1">
+                            <span class="player-name">Player 1</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="player">
+                            <img src="./style/playerInsky.webp" alt="Player 2">
+                            <span class="player-name">Player 2</span>
+                        </div>
+                    </div>
+                    <div class="score">
+                        <span class="player-score">5</span>
+                        <span class="player-score">3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------FRIENDS------------------------------------------------------------------- -->
+            <div class="friends">
+                <div class="card">
+                    <div class="profile-history">
+                        <h4 data-i18n="My friends"  class="add_friends">My friends</h4>
+                        <div class="users_container" id="listFriends">
+                            <div class="user">
+                                <div class="profileAdd">
+                                    <img src="./style/playerInsky.webp" alt="">
+                                    <div class="name">
+                                        <h3 class="hAdd">Honey</h3>
+                                    </div>
+                                </div>
+                                <span class="status enligne" >En ligne</span> <!-- Text status -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- -------------------------------------------------------REQUEST---------------------------------------------------------------------- -->
+            <div class="rate">
+                <div class="card">
+                    <div class="profile-history">
+                        <h4  class="add_friends" data-i18n="Requests">Requests</h4>
+                        <div class="users_container" id="requests_container">
+                            <div class="user"  data-request-id="123">
+                                <div class="profileAdd">
+                                    <img src="./style/playerInsky.webp" alt="">
+                                    <div class="name">
+                                        <h3 class="hAdd">Honey</h3>
+                                    </div>
+                                </div>
+                                <div class="actions">
+                                    <button class="btnAccept"><i class="fas fa-check"></i></button>
+                                    <button class="btnReject"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+<!-- ------------------------------------------------------------------------------------------------------------------------------------ -->
+        </section>
+        </div>
+        <script src="style/profile.js"></script>
+    </template>
+<!-- ----------------------------------------------Home Page----------------------------------------------------------------------------- -->
+<template id="home-page-template">
+    <div id="home">
+        <nav>
+          <p data-i18n="PingPong">Ping Pong</p>
+          <ul>
+            <li><span><i class="fa-solid fa-house"></i></span><my-link href="/home" data-i18n="Home">Home</my-link></li>
+            <li><span><i class="fa-solid fa-user"></i></span><my-link href="/profile" data-i18n="Profile">Profile</my-link></li>
+            <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/setting" data-i18n="Setting">Setting</my-link></li>
+            <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/game" data-i18n="Game">Game</my-link></li>
+          </ul>
+          <label for=""><span><i class="fa-solid fa-arrow-right-from-bracket"></i></span><span class="logOut" data-i18n="Log Out">Log Out</span></label>
+        </nav>
+        <!-- Games Section -->
+        <section id="games" class="studio-games">
+          <div class="studio-container">
+            <h2 class="studio-title" data-i18n="Discover Our Games">Discover Our Games</h2>
+            <div class="studio-game-list">
+              <!-- Game 1 -->
+              <my-link href="/secondgame" target="_blank" class="studio-game">
+                <div class="studio-game-image">
+                  <img src="./style/height.webp" alt="Game 1">
+                </div>
+                <h3 data-i18n="StarWars sky">StarWars sky</h3>
+              </my-link>    
+              <!-- Game 2 -->
+              <my-link href="/game" target="_blank" class="studio-game">
+                <div class="studio-game-image">
+                  <img src="./style/gamessssky.webp" alt="Game 2">
+                </div>
+                <h3 data-i18n="PingPong Sky">PingPong Sky</h3>
+              </my-link>
+            </div>
+          </div>
+        </section>
+        <!-- Creators Section -->
+        <section id="creators" class="creators-section">
+          <div class="studio-container">
+            <h2 class="studio-title" data-i18n="Meet the Creators">Meet the Creators</h2>
+            <div class="creator-list">
+              <!-- Creator 1 -->
+              <div class="creator">
+                <div class="creator-sky" style="background: #7df3fc;">
+                  <span data-i18n="Frontend Developer">Frontend Developer</span>
+                </div>
+                <div class="creator-image">
+                  <img src="./style/khammadi.JPG" alt="John Doe">
+                </div>
+                <div class="creator-info">
+                  <strong data-i18n="Khadija Hammadi">Khadija Hammadi</strong>
+                  <p data-i18n="Khadija is responsible for designing the user interface and ensuring a seamless player experience.">Khadija is responsible for designing the user interface and ensuring a seamless player experience.</p>
+                </div>
+              </div>
+              <!-- Creator 2 -->
+              <div class="creator">
+                <div class="creator-sky" style="background: #7df3fc;">
+                  <span data-i18n="Game Designer">Game Designer</span>
+                </div>
+                <div class="creator-image">
+                  <img src="./style/abounit.JPG" alt="Alex Johnson">
+                </div>
+                <div class="creator-info">
+                  <strong data-i18n="Anas Bounit">Anas Bounit</strong>
+                  <p data-i18n="Anas creates the game mechanics, levels, and overall gameplay experience.">Anas creates the game mechanics, levels, and overall gameplay experience.</p>
+                </div>
+              </div>
+              <!-- Creator 3 -->
+              <div class="creator">
+                <div class="creator-sky" style="background: #7df3fc;">
+                  <span data-i18n="Backend Developer">Backend Developer</span>
+                </div>
+                <div class="creator-image">
+                  <img src="./style/hnaama.JPG" alt="Jane Smith">
+                </div>
+                <div class="creator-info">
+                  <strong data-i18n="Hamza Naama">Hamza Naama</strong>
+                  <p data-i18n="Hamza handles the server-side logic and ensures the game runs smoothly.">Hamza handles the server-side logic and ensures the game runs smoothly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+</template>
+<!-- ----------------------------------------LOGIN----------------------------------------------------- -->
+    <template id="login-page-template">
+        <div id="login">
+            <div class = "form">
+                <form class="formSignIn">
+                    <h4 data-i18n="Login">Login</h4>
+                    <div class="ep-input">
+                        <input type=""  placeholder="Enter Username" data-i18n="Enter Username" class="UserPassword" required>
+                        <i></i>
+                    </div>
+                    <div class="ep-input">
+                        <input type="password"  placeholder="Enter Password" data-i18n="Enter Password"  class="UserPassword" required>
+                        <i></i>
+                    </div>
+                    <div>
+                        <input type="submit" value="Sign In"  class="sign-in-button">
+                        <button class="oauth42" class="sign-in-button">42</button>
+                        <h6 data-i18n="Don't have an account?">Don't have an account? <button class="sign_up" data-i18n="SignUp">SignUp</button></h6>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+<!-- -----------------------------------------SIGN UP---------------------------------------------------------- -->
+    <template id="signup-page-template">
+        <div id="sign_up">
+            <div class = "forms">
+                <form class="sign_Upform">
+                    <h4 class="sign_Up" data-i18n="SignUp">SignUp</h4>
+                
+                    <div class="ep-input">
+                        <input type="text" name="username" placeholder="Enter Username"  class="UserPassword" required>
+                        <i></i>
+                    </div>
+            
+                    <div class="ep-input">
+                        <input type="email" name="email" placeholder="Enter Email" class="UserPassword" required>
+                        <i></i>
+                    </div>
+                    <div class="ep-input">
+                        <input type="password" name="password" placeholder="Enter Password"  class="UserPassword" required>
+                        <i></i>
+                    </div>
+                    <div class="ep-input">
+                        <input type="text" name="nickname" placeholder="Enter Nickname"  class="UserPassword" required>
+                        <i></i>
+                    </div>
+                
+                    <div>
+                        <input class="btn btn-primary" type="submit" value="SignUp" class="sign_up" style="margin-top: 2px; color: rgb(0, 139, 137);">
+                        <button class="oauth42">42</button>
+                    </div>
+                </form>                
+            </div>
+        </div>
+    </template>
+<!-- -------------------------------------SETTING------------------------------------------------------------- -->
+    <template id="setting-page-template">
+        <nav>
+            <p data-i18n="PingPong">Ping Pong</p>
+            <ul>
+                <li><span><i class="fa-solid fa-house"></i></span><my-link href="/home" data-i18n="Home">Home</my-link></li>
+                <li><span><i class="fa-solid fa-user"></i></span><my-link href="/profile" data-i18n="Profile">Profile</my-link></li>
+                <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/setting" data-i18n="Setting">Setting</my-link></li>
+                <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/game" data-i18n="Game">Game</my-link></li>
+            </ul>
+            <label for=""><span><i class="fa-solid fa-arrow-right-from-bracket"></i></span><span class="logOut" data-i18n="Log Out">Log Out</span></label>
+        </nav>
+        <div id="setting">
+        <div class="container">
+            <div class="backg">
+                <h5 class="blockFriend" data-i18n="Update Information">Update Information</h5>
+                <div class="row_direction"><input type="text" name="Username" placeholder="Username" class="input_in" required id="username"></div>
+                <div class="row_direction"><input type="email" name="Email" placeholder="Email" class="input_in" required id="email"></div>
+                <div><button class="input_in" id="save_information" data-i18n="Save">Save</button></div>
+            </div>
+            <div class="backg changePassword"> 
+                <div class="password-container">
+                  <button class="changePasswordbutton" data-i18n="Change Password" id="showPasswordForm">Change Password</button>
+              
+                  <!-- Hidden password change form -->
+                  <div id="passwordChangeForm" style="display: none;">
+                    <input type="password" id="currentPassword" class="input_inp" data-i18n="Current Password" placeholder="Current Password" required>
+                    <input type="password" id="newPassword" class="input_inp" data-i18n="New Password" placeholder="New Password" required>
+                    <input type="password" id="confirmPassword" class="input_inp" data-i18n="Confirm Password" placeholder="Confirm Password" required>
+                    <button id="submitPasswordChange" class="input_inp" data-i18n="Update Password">Update Password</button>
+                  </div>
+                  <p id="passwordChangeMessage" style="display: none;"></p>
+                </div>
+              </div>
+              
+            <div class="backg enableButton">
+                <div class="twofa-container">
+                    <button class="enable-2fa-button">Enable 2FA</button>
+                    <div class="qr-content" style="display: none;">
+                        <div class="qr-header">
+                            <h5 class="twofa">Two-Factor Authentication</h5>
+                        </div>
+                        <img class="qr-image" alt="QR Code">
+                        <div class="secret-key"></div>
+                        <input type="text" class="verify-input" placeholder="Enter 6-digit code">
+                        <div class="verifyc-buttons">
+                            <button class="verify-button">Verify</button>
+                            <button class="cancel-button">Cancel</button>
+                        </div>
+                        <div class="verification-message"></div>
+                    </div>
+                    <button class="disable-2fa-button" style="display: none;">Disable 2FA</button>
+                </div>
+            </div>
+            <div class="lang-menu" class="backg">
+                <ul>
+                    <li>
+                        <a class="de"  data-lang="de" href="#">   German</a>
+                    </li>
+                    <li>
+                        <a class="ar"  data-lang="ar"  href="#">   Arabic</a>
+                    </li>
+                    <li>
+                        <a class="en" data-lang="en" href="#">   English</a>
+                    </li>
+                    <li>
+                        <a class="fr" data-lang="fr" data-i18n="French" href="#">   French</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </template>
+    <!-- -------------------------------------------GAME---------------------------------------------------------------- -->
+    <template id="GameT-template">
+    </template>
+    <!-- ---------------------------------------------GAME------------------------------------------------------------------ -->
+    <template id="game-page-template">
+        <nav>
+            <p data-i18n="PingPong">Ping Pong</p>
+            <ul>
+                <li><span><i class="fa-solid fa-house"></i></span><my-link href="/home" data-i18n="Home">Home</my-link></li>
+                <li><span><i class="fa-solid fa-user"></i></span><my-link href="/profile" data-i18n="Profile">Profile</my-link></li>
+                <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/setting" data-i18n="Setting">Setting</my-link></li>
+                <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/game" data-i18n="Game">Game</my-link></li>
+            </ul>
+            <label for=""><span><i class="fa-solid fa-arrow-right-from-bracket"></i></span><span class="logOut" data-i18n="Log Out">Log Out</span></label>
+        </nav>
+        <div id="PongGames">
+        <div class="parent-container">
+            <div class="containerGame">
+                <h1 data-i18n="Play 1 vs 1">Play 1 vs 1</h1>
+                <form id="playerForm">
+                    <input class="inputGame" type="text" id="player1" name="player1" data-i18n="Enter Player 1 Name" placeholder="Enter Player 1 Name" required>
+                    <input class="inputGame" type="text" id="player2" name="player2"data-i18n="Enter Player 2 Name" placeholder="Enter Player 2 Name" required>
+                    <button class="buttonGame" type="submit" data-i18n="Start the Game" >Start the Game</button>
+                </form>
+            </div>
+    
+            <div class="container3">
+                <h1 data-i18n="Start a Tournament">Start a Tournament</h1>
+                <form id="playerFormStar">
+                  <input class="inputGame" type="text" id="player1star" name="player1star" data-i18n="Enter Player 1 Name" placeholder="Enter Player 1 Name" required>
+                  <input class="inputGame" type="text" id="player2star" name="player2star" data-i18n="Enter Player 2 Name"  placeholder="Enter Player 2 Name" required>
+                  <input class="inputGame" type="text" id="player3star" name="player2star" data-i18n="Enter Player 3 Name" placeholder="Enter Player 3 Name" required>
+                  <input class="inputGame" type="text" id="player4star" name="player2star" data-i18n="Enter Player 4 Name" placeholder="Enter Player 4 Name" required>
+                    <button class="buttonGame" type="submit" data-i18n="Start the Game" >Start the Game</button>
+                </form>
+            </div>
+    
+            <div class="container2">
+                <h1 data-i18n="Play vs AI">Play vs AI</h1>
+                <form id="playerFormAI">
+                  <input class="inputGame" type="text" id="player1AI" name="player1AI" data-i18n="player1AI" placeholder="Enter Player Name" required>
+                  <input class="inputGame" type="text" id="player2AI" name="player2AI" data-i18n="Enter AI Name" placeholder="Enter AI Name" required>
+                    <button class="buttonGame" type="submit" data-i18n="Start the Game" >Start the Game</button>
+                </form>
+            </div>
+            <div class="container4">
+                <h1 data-i18n="Play against Multiple players">Play against Multiple players</h1>
+                <form id="playerMultiple">
+                  <input class="inputGame" type="text" id="player1Multiple" name="player1Multiple" placeholder="Enter Player 1 Name" required>
+                  <input class="inputGame" type="text" id="player2Multiple" name="player2Multiple" placeholder="Enter Player 2 Name" required>
+                  <input class="inputGame" type="text" id="player3Multiple" name="player2Multiple" placeholder="Enter Player 3 Name" required>
+                    <button class="buttonGame" type="submit" data-i18n="Start the Game" >Start the Game</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </template>
+    <template id="gameSeconds-page-template">
+        <div id="gameSecond"></div>
+    </template>
+    <template id="twofa-page-template">
+        <div id="TwoFa">
+            <form class="formTwofa">
+              <h1>Security check</h1>
+              <fieldset>
+                <legend id="legend-email">
+                  2Fa security token
+                </legend>
+                <div class="form__group form__pincode">
+                  <label aria-label="number 1">
+                    <input  class="inputtfa" id="one"  name="pincode-1" maxlength="1"   >
+                  </label>
+                  <label aria-label="number 2">
+                    <input class="inputtfa" id="two"  name="pincode-2" maxlength="1"   >
+                  </label>
+                  <label aria-label="number 3">
+                    <input class="inputtfa" id="three"  name="pincode-3" maxlength="1"   >
+                  </label>
+                  <label aria-label="number 4">
+                    <input class="inputtfa" id="four"  name="pincode-4" maxlength="1"   >
+                  </label>
+                  <label aria-label="number 5">
+                    <input class="inputtfa" id="five"  name="pincode-5" maxlength="1"   >
+                  </label>
+                  <label aria-label="number 6">
+                    <input class="inputtfa" id="six"  name="pincode-6" maxlength="1"   >
+                  </label>
+                </div>
+                <label aria-label="Submit">
+                  <input class="inputtfa" id="validate-two-factor-authentication-btn" class="center" type="submit" value="Submit" />
+                </label>
+              </fieldset>
+            </form>
+          </div>
+    </template>
+    <template id="gameSecond-page-template">
+        <div id="gameStarWar">
+            <nav>
+                <p data-i18n="PingPong">Ping Pong</p>
+                <ul>
+                    <li><span><i class="fa-solid fa-house"></i></span><my-link href="/home" data-i18n="Home">Home</my-link></li>
+                    <li><span><i class="fa-solid fa-user"></i></span><my-link href="/profile" data-i18n="Profile">Profile</my-link></li>
+                    <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/setting" data-i18n="Setting">Setting</my-link></li>
+                    <li><span><i class="fa-solid fa-gear"></i></span><my-link href="/game" data-i18n="Game">Game</my-link></li>
+                </ul>
+                <label for=""><span><i class="fa-solid fa-arrow-right-from-bracket"></i></span><span class="logOut" data-i18n="Log Out">Log Out</span></label>
+            </nav>
+            <div class="parent-container-secondW">
+                <div class="container-secondW">
+                    <h1>Play 1 vs 1</h1>
+                    <form id="playerForm">
+                        <input class="input_second_game"type="text" id="player1" name="player1" placeholder="Enter Player 1 Name" required>
+                        <input class="input_second_game" type="text" id="player2" name="player2" placeholder="Enter Player 2 Name" required>
+                        <button class="button_second_game_s"type="submit" data-i18n="Start the Game">Start the Game</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+</html>

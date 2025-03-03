@@ -1,0 +1,137 @@
+#sign_up {
+    background-image: linear-gradient(rgba(129, 196, 194, 0.453), rgba(255, 250, 250, 0.548)), url('forgame.png');
+    background-size: 100% 100%;
+    background-position: unset;
+    display: flex;
+    min-height: 100vh;
+    justify-content: space-around;
+    align-items: flex-start;
+    position: relative;
+}
+
+.error {
+    height: 30px;
+    position: absolute;
+    top: 100px;
+    left: 110px;
+    color: red;
+    font-size: 14px;
+    z-index: 3;
+    background-color: #ff5500;
+}
+
+.error .message-error {
+    color: #1a1817;
+}
+
+.close-btn {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #01f2ff;
+}
+
+.close-btn:hover {
+    color: #ff0000;
+}
+
+.forms {
+    margin-top: 200px;
+    margin-left: 110px;
+    position: relative;
+    width: 320px;
+    height:300px;
+    background-color: rgba(90, 244, 255, 0.502);
+    border: 1px solid rgba(255, 255, 255, 0.765);
+    box-shadow: 0px 1px 10px rgba(255, 255, 255, 0.787);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.forms form .ep-input {
+    position: relative;
+    width: 240px;
+}
+
+.forms form h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #45f3ff;
+    text-align: center;
+    margin-top: 10px;
+    text-shadow: 0 0 10px #21e5f3, 0 0 40px #21e5f3, 0 0 80px #21e5f3;
+}
+
+.forms form .ep-input .UserPassword {
+    position: relative;
+    width: 90%;
+    padding: 7px 9px;
+    margin-left: 40px;
+    margin-top: 5px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    border: none;
+    border-bottom: 1px solid white;
+}
+
+.UserPassword::placeholder {
+    color: #ffffff;
+}
+
+.forms form input[type="submit"] {
+    border: none;
+    margin-top: 30px;
+    margin-left: 40px;
+    width: 100px;
+    outline: none;
+    padding: 9px 19px;
+    background: rgb(117, 255, 255);
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+h6 {
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff, 0 0 40px #fefeff, 0 0 80px #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.sign_up {
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    color: rgb(0, 139, 137);
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+}
+
+.forms form .oauth42 {
+    border: none;
+    margin-top: 30px;
+    margin-left: 40px;
+    width: 100px;
+    outline: none;
+    padding: 9px 25px;
+    background: rgb(117, 255, 255);
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    color: rgb(0, 139, 137);
+}
+
+.sign-in-button {
+    color: rgb(0, 139, 137);
+}

@@ -1,0 +1,300 @@
+#profile {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: linear-gradient(rgba(129, 196, 194, 0.453), rgba(255, 250, 250, 0.548)), url('forgame.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.profile {
+    display: flex; 
+    gap: 20px;
+    width: 90%;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 60px;
+    margin-left: 100px;
+}
+
+.avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.avatar-section img {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    opacity: 1;
+    transform: translate(-50%, -50%); 
+    width: 150px;
+    max-width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid rgb(13, 243, 255);
+}
+
+#file {
+    display: none;
+}
+
+#idbtn {
+    position: absolute; 
+    top: calc(50% + 65px);
+    left: calc(20% + 50px);
+    transform: translate(-50%, -50%);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 255, 251, 0.874);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(234, 232, 232, 0.5);
+    border: 2px solid rgb(63, 51, 51);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#idbtn:hover {
+    background-color:  rgba(0, 255, 251, 0.874);
+    box-shadow: 0 0 10px rgba(0, 255, 251, 0.874);
+}
+
+.statistics {
+    width: 40%; 
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+.statistics h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.statistics p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.design-div {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 48vh;
+    padding: 20px;
+}
+
+.last-tourn, .rate, .friends {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    background: rgba(252, 252, 252, 0.23);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 0 10px;
+}
+
+/* .last-tourn:hover, .rate:hover, .friends:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(212, 212, 212, 0.3);
+} */
+/* 
+.box {
+    display: flex;
+    position: relative;
+    margin: 50px;
+    background-size: 100% 100%;
+    margin-top: 100px;
+} */
+
+.statistics .text {
+    position: absolute;
+    top: 45%;
+    left: 42%;
+    /* transform: translate(-50%, -50%); */
+    text-align: center;
+    color: #3230a3;
+}
+
+.text h2 {
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: rgb(29, 152, 156);
+    text-shadow: 20px 20px 50px rgba(145, 15, 156);
+}
+
+ .text small {
+    font-size: 18px;
+    display: block;
+}
+
+.circle {
+    width: 190px;
+    height: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 100% 100%;
+    border-radius: 50%;
+    margin-left: 200px;
+}
+
+.circle .points {
+    width: 3px;
+    height: 15px;
+    background: #9cffffa4;
+    position: absolute;
+    border-radius: 3px;
+    transform: rotate(calc(var(--i) * var(--rot))) translateY(-100px);
+}
+
+.points.marked {
+    animation: glow 0.04s linear forwards;
+    animation-delay: calc(var(--i) * 0.05s);
+}
+
+@keyframes glow {
+    0% {
+        background: #05cdffa4;
+        box-shadow: none;
+    }
+    100% {
+        background: #ffffffa4;
+        box-shadow: 0 0 10px #fffefda4;
+    }
+}
+
+.profile-history {
+    background-color: rgba(34, 147, 155, 0.738);
+    backdrop-filter: blur(10px);
+    height: 300px;
+    width: 280px;
+    box-shadow: 20px 20px 50px rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    overflow-y: scroll;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+}
+
+
+.profile-history::-webkit-scrollbar {
+    width: 10px;
+}
+
+.profile-history::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px;
+}
+
+.profile-history::-webkit-scrollbar-thumb {
+    background-color: rgba(26, 95, 122, 0.8);
+    border-radius: 5px;
+}
+
+.profile-history  h4.add_friends {
+    padding: 2px;
+    padding-left: 12px;
+    /* margin-bottom: 2px;
+    margin-top: 9px; */
+    margin: 7px;
+    color: rgb(255, 255, 255) !important; /* Use !important as a last resort */
+    font-family: "Times New Roman", Times, serif;
+    width: 50%;
+    margin-left: 70px;
+    border-radius: 15px;
+    border:  2px solid rgb(255, 255, 255);
+    height: 27px;
+    font-size: 17px;
+}
+
+.profile-history img {
+    margin-top: 7px;
+    width: 100%;
+    height: 80px;
+    border-radius: 15px;
+}
+
+.card {
+    height: 300px;
+    width: 280px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: rgba(18, 229, 240, 0);
+}
+
+.mat_history {
+    display: flex;
+    flex-direction: row;
+    background-image: url('goldl.jpg');
+    background-size: 100% 100%;
+    width: 80%;
+    height: 70px;
+    border-radius: 15px;
+}
+
+.trapezoid1 {
+    flex: 1;
+    height: 135px;
+    clip-path: polygon(1% 2%, 80% 2%, 40% 42%, 1% 42%);
+    background-image: url('download.jpeg');
+    background-size: 50% 50%;
+    margin-top: 10px;
+}
+
+.trapezoid2 {
+    flex: 1;
+    height: 135px;
+    clip-path: polygon(58% 1%, 98% 1%, 98% 42%, 10% 42%);
+    background-image: url('download.jpeg');
+    background-size: 50% 50%;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.divUser {
+    position: absolute;
+    width: 20%;
+    left: 30%;
+    height: 30px;
+    bottom: 90px;
+    text-align: center;
+}
+
+.divUser .User {
+    padding: 0;
+    margin-bottom: 2px;
+    margin-top: 9px;
+    color: rgb(240, 240, 240);
+    font-family: "Times New Roman", Times, serif;
+    width: 50%;
+    margin-left: 70px;
+    border-radius: 15px;
+    height: 20px;
+}

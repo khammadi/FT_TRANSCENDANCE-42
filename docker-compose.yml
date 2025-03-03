@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    networks:
+      - game_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: ./backend
+    command: >
+      sh -c "
+         python manage.py collectstatic --noinput &&
+         python manage.py makemigrations users &&
+         python manage.py makemigrations games &&
+         python manage.py makemigrations otp_totp &&
+         python manage.py migrate &&
+         python manage.py migrate users &&
+         python manage.py migrate games &&
+         python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/media:/app/backend/media
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - game_network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - web
+    networks:
+      - game_network
+
+  tests:
+    build: ./backend
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py makemigrations users &&
+             python manage.py makemigrations games &&
+             python manage.py makemigrations otp_totp &&
+             python manage.py migrate &&
+             python manage.py migrate users &&
+             python manage.py migrate games &&
+             python manage.py test --noinput"
+    env_file:
+      - ./.env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - game_network
+
+volumes:
+  postgres_data:
+
+networks:
+  game_network:
+    driver: bridge
